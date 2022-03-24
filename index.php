@@ -17,10 +17,10 @@ function whatIsHappening() {
     var_dump($_GET);
     echo '<h2>$_POST</h2>';
     var_dump($_POST);
-    // echo '<h2>$_COOKIE</h2>';
-    // var_dump($_COOKIE);
-    // echo '<h2>$_SESSION</h2>';
-    // var_dump($_SESSION);
+    echo '<h2>$_COOKIE</h2>';
+    var_dump($_COOKIE);
+    echo '<h2>$_SESSION</h2>';
+    var_dump($_SESSION);
 }
 
 // TODO: provide some products (you may overwrite the example)
@@ -38,16 +38,21 @@ $products = [
 
 $totalValue = 0;
 
+if(isset($_POST['test1'])){
+    echo "checked value1"."<br>";
+}
+
 function validate()
 {
     // This function will send a list of invalid fields back
     return [];
 }
 
-function handleForm()
-{
-    // TODO: form related tasks (step 1)
+function handleForm() {
 
+    // TODO: form related tasks (step 1)
+    $message = 'Thanks for your order! We\'ll ship maybe';
+    return $message;
     // Validation (step 2)
     $invalidFields = validate();
     if (!empty($invalidFields)) {
@@ -58,9 +63,9 @@ function handleForm()
 }
 
 // TODO: replace this if by an actual check
-$formSubmitted = false;
+$formSubmitted = !empty($_POST);
 if ($formSubmitted) {
-    handleForm();
+    $message = handleForm();
 }
 
 require 'form-view.php';
